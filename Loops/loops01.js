@@ -4,3 +4,4 @@ for (var i = 0; i < 16; i++) {
     }else{console.log(i+ ' je neparan broj')};
     
 }
+
