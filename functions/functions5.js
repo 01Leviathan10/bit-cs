@@ -1,3 +1,5 @@
+
+    "use strict"
 function firstOcc(str, n) {
     var position = 0;
     if (typeof str === 'undefined' && typeof str === 'undefined') {

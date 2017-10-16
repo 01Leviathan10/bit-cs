@@ -1,4 +1,6 @@
-function isString(string) {
+
+ "use strict"
+function isString(string){
     return typeof string === 'string';
 }
 

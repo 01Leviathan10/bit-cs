@@ -1,3 +1,5 @@
+
+    "use strict"
 function addSuffix(num) {
     var result = '';
     if (typeof num == 'number') {
