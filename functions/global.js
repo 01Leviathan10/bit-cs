@@ -1,3 +1,4 @@
+ "use strict"
 var global = 123;
 
 function myFun() {
@@ -7,3 +8,4 @@ function myFun() {
 }
 
 myFun()
+                                                    
