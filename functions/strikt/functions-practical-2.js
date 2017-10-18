@@ -64,23 +64,19 @@
 // }
 // // print(spajanjeNiza([1,2,3,4,5],["a","b","c"]));
 
-function funrotate(arrey, number) {
-
-    var store = [];
-    for (var i = number, j = 0; i < arrey.lenght; i++) {
-        store[j] = arrey[i];
-        j++;
+function rotate(niz){
+    var pom=niz[0];
+    for (var i = 0; i < niz.length-1; i++) {
+        niz[i]=niz[i+1];
+        
     }
-    for (var i = 0; i < number; i++) {
-
-        store[j] = arrey[i];
-        j++;
-    }
-    return store;
-
-
+    niz[niz.length]=pom;
+    return niz;
 }
-
-console.log(funrotate([1, 2, 3, 4, 5], 3))
-
-
+function multipleRotate(niz,n){
+    for (var i = 0; i < n; i++){
+        rotate(niz);
+    }
+        return niz;
+}
+console.log(multipleRotate([1,2,3,4,5,6,7,8], 5));
