@@ -1,5 +1,38 @@
 "use strict";
+Festival.prototype.getData = function () {
+    var b = '';
+
+    for (var i = 0; i < this.listPrograms.length; i++) {
+        var program = this.listPrograms[i].getData();
+        b += "\t" + program + "\n";
+        this.totalNumMov += this.listPrograms[i].totalNumMov;
+    }
+    var a = this.name + " has " + this.totalNumMov + " movie titles." + '\n';
+    return a + b;
+};
+Genre.prototype.getData = function () {
+    return this.name.charAt(0).toUpperCase() + this.name.charAt(this.name.length - 1).toUpperCase();
+};
+
+Movie.prototype.getData = function () {
+    return this.name + ', ' + this.length + ', ' + this.genre.getData();
+};
+
+Program.prototype.getData = function () {
+    var totalnaDuzina = 0;
+    var str = '';
+    for (var i = 0; i < this.listMovies.length; i++) {
+        str += "\t" + this.listMovies[i].name + ', ' + this.listMovies[i].length + ', ' + this.listMovies[i].genre.getData() + "\n" + "\t";
+        totalnaDuzina += this.listMovies[i].length;
+        this.totalNumMov++;
+    }
+    var a = this.date + ', program duration: ' + totalnaDuzina + '\n' + "\t";
+
+    return a + str;
+};
+
 (function () {
+
     console.log("");
 
     var s = new Festival("Rockfest");
@@ -29,9 +62,7 @@
 
 function Genre(zhanr) {
     this.name = zhanr;
-    this.getData = function () {
-        return this.name.charAt(0).toUpperCase() + zhanr.charAt(this.name.length - 1).toUpperCase();
-    }
+   
 
 }
 
@@ -39,9 +70,7 @@ function Movie(mTitle, mGenre, mLength) {
     this.name = mTitle;
     this.genre = new Genre(mGenre);
     this.length = mLength;
-    this.getData = function () {
-        return this.name + ', ' + this.length + ', ' + this.genre.getData();
-    }
+    
 }
 
 function Program(datum) {
@@ -49,21 +78,10 @@ function Program(datum) {
     this.listMovies = [ /*{name:"Game of THrons",genre:"Fantasy",length:190},{name:"Game of THrons",genre:"Fantasy",length:190},{name:"Game of THrons",genre:"Fantasy",length:190}, */ ];
     this.totalNumMov = 0;
     this.addMovie = function (movie) {
-        
+
         this.listMovies.push(movie);
     }
-    this.getData = function () {
-        var totalnaDuzina = 0;
-        var str = ''
-        for (var i = 0; i < this.listMovies.length; i++) {
-            str += "\t" + this.listMovies[i].name + ', ' + this.listMovies[i].length + ', ' + this.listMovies[i].genre.getData() + "\n" + "\t";
-            totalnaDuzina += this.listMovies[i].length;
-            this.totalNumMov++;
-        }
-        var a = this.date + ', program duration: ' + totalnaDuzina + '\n' + "\t";
-
-        return a + str;
-    }
+    
 
 }
 //var a = new  Program("October 13, 2014 11:13:00");
@@ -76,15 +94,7 @@ function Festival(ime) {
     this.addProgram = function (program) {
         this.listPrograms.push(program);
     }
-    this.getData = function () {
-        var b = '';
-
-        for (var i = 0; i < this.listPrograms.length; i++) {
-            var program = this.listPrograms[i].getData();
-            b += "\t" + program + "\n";
-            this.totalNumMov += this.listPrograms[i].totalNumMov;
-        }
-        var a = this.name + " has " + this.totalNumMov + " movie titles." + '\n';
-        return a + b;
-    }
+    
 }
+
+console.log()
