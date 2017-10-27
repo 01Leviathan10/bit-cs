@@ -1,3 +1,4 @@
+    "use strict"
 function concat(string, n) {
     if (arguments.length < 2) {
         return string;
