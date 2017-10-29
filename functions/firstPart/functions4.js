@@ -1,3 +1,4 @@
+    "use strict"
 function letterCount(str, n) {
     var result = 0;
     for (var i = 0; i < str.length; i++) {

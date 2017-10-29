@@ -1,3 +1,4 @@
+    "use strict"
 function isBlank(string){
     if (typeof string !== "string") {
         return false;
