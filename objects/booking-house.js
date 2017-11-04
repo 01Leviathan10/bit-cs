@@ -2,30 +2,40 @@
 
 Person.prototype.formattStringPerson = function () {
     return this.name + " " + this.surname + " " + this.dateOfBirth;
-}
+};
 Player.prototype.formattStringPlayer =  function () {
-    return this.countryObj.name  + " " + this.betAmount + " " + this.personObj.name + " " +this.personObj.surname + " " + 2017 - this.personObj.dateOfBirth;
-}
+    return this.countryObj.name  + " " + this.betAmount + " " + this.personObj.name + " " +this.personObj.surname + " " + (2017 - this.personObj.dateOfBirth) + "years";
+};
 Address.prototype.address = function () {
     return this.streatAndNumber + " " + this.postalCode + " " + this.country;
-}
+};
 BettingPlace.prototype.addPlayer = function (personObj) {
     this.listOfPlayers.push(personObj);
-}
+};
+BettingHouse.prototype.bettingPlace = function (bettingPlaceObj) {
+    this.listOfBettingPlaces.push(bettingPlaceObj);
+};
 BettingPlace.prototype.bettingPlace = function () {
     var cuva = 0;
     var str1 = "";
     for (var i = 0; i < this.listOfPlayers.length; i++) {
          var element = this.listOfPlayers[i];
          cuva += element.betAmount;
-         str1 += 
+         str1 += element.formattStringPlayer();
     }
-    return this.addressObj.streat + " " + this.addressObj.number + " " + this.addressObj.postalCode + " " + this.addressObj.city + " " + cuva;
-}
-BettingHouse.prototype.bettingPlace = function () {
+    return this.addressObj.streat + " " + this.addressObj.number + " " + this.addressObj.postalCode + " " + this.addressObj.city + " " + cuva + "eura" + "\n"
+    +"\t"+"\t" + str1;
+};
+BettingHouse.prototype.final = function () {
     var cuva1 = 0;
-    
-}
+    var str2 ="";
+    for (var i = 0; i < this.listOfBettingPlaces.length; i++) {
+        cuva1 = this.listOfBettingPlaces[i].listOfPlayers.length;
+        str2 = this.listOfBettingPlaces[i].bettingPlace();
+    }
+    return this.competition + ", " + this.listOfBettingPlaces + "betting places, " + cuva1 + "bets" + "\n" + str2;
+
+};
 
 function Country(name,odds,elementofcountry) {
     this.name = name;
@@ -69,30 +79,40 @@ function BettingHouse(competition) {
 }
 
 (function () {
-    var eU = {
-        ime: "europa",
+    // var eU = {
+    //     ime: "europa",
+    // }
+    // var aS = {
+    //     ime: "azija",
+    // }
+    // var aF = {
+    //     ime: "afrika",
+    // }
+    // var sA = {
+    //     ime: "juznaAmerika",
+    // }
+    // var nA = {
+    //     ime: "severnaAmerika",
+    // }
+    // var aU = {
+    //     ime: "australija",
+    // }
+    var continent = {
+        eU: "europa",
+        aS: "azija",
+        aF: "afrika",
+        sA: "juznaAmerika",
+        nA: "severnaAmerika",
+        aU: "australija"
     }
-    var aS = {
-        ime: "azija",
-    }
-    var aF = {
-        ime: "afrika",
-    }
-    var sA = {
-        ime: "juznaAmerika",
-    }
-    var nA = {
-        ime: "severnaAmerika",
-    }
-    var aU = {
-        ime: "australija",
-    }
+
+    var freez = Object.freeze(continent);
     
-    function okretac(personObj,betAmount,countryObj) {
+    function createPlayer(personObj,betAmount,countryObj) {
         var igrac = new Player (personObj,betAmount,countryObj);
         return igrac;
     }
-    function prekretac(addressObj) {
+    function createBettingPlace(addressObj) {
         var adresar = new BettingPlace(addressObj);
         return adresar;
     }
@@ -105,10 +125,10 @@ function BettingHouse(competition) {
 
     
     
-    var zemlja1 = new Country ("SR", 1050, eU.ime);
-    var zemlja2 = new Country ("SR", 1050, eU.ime);
-    var zemlja3 = new Country ("GR", 1050, eU.ime);
-    var zemlja4 = new Country ("SR", 1050, eU.ime);
+    var zemlja1 = new Country ("SR", 1050, continent);
+    var zemlja2 = new Country ("SR", 1050, continent);
+    var zemlja3 = new Country ("GR", 1050, continent);
+    var zemlja4 = new Country ("SR", 1050, continent);
     
     var adresa1 = new Address (zemlja1, "Belgrade", 11000, "Nemanjina",16);
     var adresa2 = new Address (zemlja3, "Belgrade", 11000, "Nemanjina",16);
@@ -124,7 +144,10 @@ function BettingHouse(competition) {
     ifBetHouse.listOfBettingPlaces.push(kladjenje1);
     ifBetHouse.listOfBettingPlaces.push(kladjenje2);
 
+    console.log(ifBettHouse.final());
+
 })()
+
 
 
 
