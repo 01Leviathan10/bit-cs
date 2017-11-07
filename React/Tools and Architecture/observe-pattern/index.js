@@ -7,7 +7,7 @@ var observer = function(ime){
         metoda:uzbuna
     }
 }
-
+    
 var main = function(){
     var n = [];
     function addObs(nekoga){
