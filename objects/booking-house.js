@@ -4,7 +4,7 @@ Person.prototype.formattStringPerson = function () {
     return this.name + " " + this.surname + " " + this.dateOfBirth;
 };
 Player.prototype.formattStringPlayer =  function () {
-    return this.countryObj.name  + " " + this.betAmount + " " + this.personObj.name + " " +this.personObj.surname + " " + (2017 - this.personObj.dateOfBirth) + "years";
+    return this.zemlja.name  + " " + this.betAmount + " " + this.person.name + " " +this.person.surname + " " + (2017 - this.person.dateOfBirth) + "years";
 };
 Address.prototype.address = function () {
     return this.streatAndNumber + " " + this.postalCode + " " + this.country;
@@ -51,10 +51,10 @@ function Person(name, surname, dateOfBirth) {
 
 
 
-function Player(personObj, betAmount, country) {
+function Player(personObj, betAmount, countryObj) {
    this.person = personObj;
    this.betAmount = betAmount;
-   var zemlja = new Country(country);
+   this.zemlja = countryObj;
 }
 
 function Address(countryObj, city, postalCode, streat, number) {
@@ -125,10 +125,16 @@ function BettingHouse(competition) {
 
     
     
-    var zemlja1 = new Country ("SR", 1050, continent);
-    var zemlja2 = new Country ("SR", 1050, continent);
-    var zemlja3 = new Country ("GR", 1050, continent);
-    var zemlja4 = new Country ("SR", 1050, continent);
+    
+    var zemlja1 = new Country ("SR", 1050, continent.eU);
+    var zemlja2 = new Country ("SR", 1050, continent.aF);
+    var zemlja3 = new Country ("GR", 1050, continent.nA);
+    var zemlja4 = new Country ("SR", 1050, continent.sA);
+
+    var player1 = new Player (persona1, 2900, zemlja1);
+    var player2 = new Player (persona2, 2900, zemlja2);
+    var player3 = new Player (persona3, 2900, zemlja3);
+    var player4 = new Player (persona4, 2900, zemlja4);
     
     var adresa1 = new Address (zemlja1, "Belgrade", 11000, "Nemanjina",16);
     var adresa2 = new Address (zemlja3, "Belgrade", 11000, "Nemanjina",16);
@@ -136,15 +142,15 @@ function BettingHouse(competition) {
     var kladjenje1 = new BettingPlace (adresa1);
     var kladjenje2 = new BettingPlace (adresa2);
     
-    kladjenje1.listOfPlayers.push(persona1);
-    kladjenje2.listOfPlayers.push(persona2);
-    kladjenje1.listOfPlayers.push(persona3);
-    kladjenje2.listOfPlayers.push(persona4);
+    kladjenje1.listOfPlayers.push(player1);
+    kladjenje2.listOfPlayers.push(player2);
+    kladjenje1.listOfPlayers.push(player3);
+    kladjenje2.listOfPlayers.push(player4 );
 
     ifBetHouse.listOfBettingPlaces.push(kladjenje1);
     ifBetHouse.listOfBettingPlaces.push(kladjenje2);
 
-    console.log(ifBettHouse.final());
+    console.log(ifBetHouse.final());
 
 })()
 
