@@ -1,4 +1,3 @@
-"use strict";
 Festival.prototype.getData = function () {
     var b = '';
 
@@ -31,7 +30,52 @@ Program.prototype.getData = function () {
     return a + str;
 };
 
-(function () {
+
+
+class Genre {
+    constructor(zhanr) {
+        this.name = zhanr;
+
+    }
+}
+
+class Movie {
+    constructor(mTitle, mGenre, mLength) {
+        this.name = mTitle;
+        this.genre = new Genre(mGenre);
+        this.length = mLength;
+    }
+}
+
+class Program {
+    constructor(datum) {
+        this.date = datum;
+        this.listMovies = [ /*{name:"Game of THrons",genre:"Fantasy",length:190},{name:"Game of THrons",genre:"Fantasy",length:190},{name:"Game of THrons",genre:"Fantasy",length:190}, */ ];
+        this.totalNumMov = 0;
+        this.addMovie = function (movie) {
+
+            this.listMovies.push(movie);
+        }
+    }
+}
+//var a = new  Program("October 13, 2014 11:13:00");
+//console.log(a.getData());
+
+class Festival {
+    constructor(ime){
+    this.name = ime;
+    this.listPrograms = [];
+    this.totalNumMov = 0;
+    this.addProgram = function (program) {
+        this.listPrograms.push(program);
+    }
+    }
+}
+
+
+
+
+(() => {
 
     console.log("");
 
@@ -49,8 +93,8 @@ Program.prototype.getData = function () {
         var a = new Program(date);
         return a;
     }
-    var pro1 = createProgram("1.2.2001.");
-    var pro2 = createProgram("2.4.2034.");
+    let pro1 = createProgram("1.2.2001.");
+    let pro2 = createProgram("2.4.2034.");
     pro1.addMovie(film1);
     pro1.addMovie(film2);
     pro2.addMovie(film2);
@@ -59,42 +103,3 @@ Program.prototype.getData = function () {
     s.addProgram(pro2);
     console.log(s.getData());
 })();
-
-function Genre(zhanr) {
-    this.name = zhanr;
-   
-
-}
-
-function Movie(mTitle, mGenre, mLength) {
-    this.name = mTitle;
-    this.genre = new Genre(mGenre);
-    this.length = mLength;
-    
-}
-
-function Program(datum) {
-    this.date = datum;
-    this.listMovies = [ /*{name:"Game of THrons",genre:"Fantasy",length:190},{name:"Game of THrons",genre:"Fantasy",length:190},{name:"Game of THrons",genre:"Fantasy",length:190}, */ ];
-    this.totalNumMov = 0;
-    this.addMovie = function (movie) {
-
-        this.listMovies.push(movie);
-    }
-    
-
-}
-//var a = new  Program("October 13, 2014 11:13:00");
-//console.log(a.getData());
-
-function Festival(ime) {
-    this.name = ime;
-    this.listPrograms = [];
-    this.totalNumMov = 0;
-    this.addProgram = function (program) {
-        this.listPrograms.push(program);
-    }
-    
-}
-
-console.log()
