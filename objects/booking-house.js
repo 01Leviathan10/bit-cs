@@ -1,10 +1,11 @@
 "use strict";
 
+//prototype
 Person.prototype.formattStringPerson = function () {
     return this.name + " " + this.surname + " " + this.dateOfBirth;
 };
 Player.prototype.formattStringPlayer =  function () {
-    return this.zemlja.name  + " " + this.betAmount + " " + this.person.name + " " +this.person.surname + " " + (2017 - this.person.dateOfBirth) + "years";
+    return this.zemlja.name  + " " + this.betAmount+ "euara" + " " + this.person.name + " " +this.person.surname + " " + (2017 - this.person.dateOfBirth) + "years"+ "\n" + "\t" + "\t";
 };
 Address.prototype.address = function () {
     return this.streatAndNumber + " " + this.postalCode + " " + this.country;
@@ -23,7 +24,7 @@ BettingPlace.prototype.bettingPlace = function () {
          cuva += element.betAmount;
          str1 += element.formattStringPlayer();
     }
-    return this.addressObj.streat + " " + this.addressObj.number + " " + this.addressObj.postalCode + " " + this.addressObj.city + " " + cuva + "eura" + "\n"
+    return "\t" + this.addressObj.streat + " " + this.addressObj.number + " " + this.addressObj.postalCode + " " + this.addressObj.city + ", " + "The sum of all bets: "+ cuva + "eura" + "\n"
     +"\t"+"\t" + str1;
 };
 BettingHouse.prototype.final = function () {
@@ -33,9 +34,11 @@ BettingHouse.prototype.final = function () {
         cuva1 = this.listOfBettingPlaces[i].listOfPlayers.length;
         str2 = this.listOfBettingPlaces[i].bettingPlace();
     }
-    return this.competition + ", " + this.listOfBettingPlaces + "betting places, " + cuva1 + "bets" + "\n" + str2;
+    return this.competition + ", " + this.listOfBettingPlaces.length + " " + "betting places, " + cuva1+ " " + "bets" + "\n" + str2;
 
 };
+
+//constructor
 
 function Country(name,odds,elementofcountry) {
     this.name = name;
@@ -61,7 +64,7 @@ function Address(countryObj, city, postalCode, streat, number) {
     this.country = countryObj;
     this.city = city;
     this.postalCode = postalCode;
-    this.street = streat;
+    this.streat = streat;
     this.number = number;
 
 
@@ -97,6 +100,8 @@ function BettingHouse(competition) {
     // var aU = {
     //     ime: "australija",
     // }
+
+    //kontinenti
     var continent = {
         eU: "europa",
         aS: "azija",
@@ -137,7 +142,7 @@ function BettingHouse(competition) {
     var player4 = new Player (persona4, 2900, zemlja4);
     
     var adresa1 = new Address (zemlja1, "Belgrade", 11000, "Nemanjina",16);
-    var adresa2 = new Address (zemlja3, "Belgrade", 11000, "Nemanjina",16);
+    var adresa2 = new Address (zemlja3, "Atina", 15000, "Pekarova",44);
     
     var kladjenje1 = new BettingPlace (adresa1);
     var kladjenje2 = new BettingPlace (adresa2);
